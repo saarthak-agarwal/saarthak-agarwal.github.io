@@ -1,32 +1,15 @@
-/***********************
-    1.BASIC           
-    2.HELPER
-    3.NAVBAR
-    4.HOME
-    5.ABOUT ME
-    6.SERVICES
-    7.FUNFACTS
-    8.EDUCATION & EXPERIANCE
-    9.CTA SECTION
-    10.WORK
-    11.CLIENT
-    12.GREATE PEOPLE
-    13.SUBCRIBE SECTION
-    14.BLOG
-    15.CONTACT US
-    16.FOOTER
-    17.BLOG PAGE
-        -SIDEBAR
-        -BLOG SINGLE
-    17.RESPONSIVE
-************************/
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Nunito:400,600,700');
-
-/*======================
-        1.BASIC
-========================*/
-
+/* -------------------------------------------------------------------
+ * ## header social
+ * ------------------------------------------------------------------- */
+.header__social {
+  list-style: none;
+  margin: 4rem 0 0 0;
+  padding: 0 0 4.4rem 0;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
 
 body {
     font-family: 'Baskerville', sans-serif;
@@ -153,11 +136,6 @@ button:focus {
     font-size: 12px;
     display: block;
 }
-
-/*==========================
-        2.HELPER
-============================*/
-
 .section {
     padding-top: 80px;
     padding-bottom: 80px;
@@ -331,11 +309,6 @@ button:focus {
     border-color: #000;
     color: #000;
 }
-
-/*==========================
-        3.NAVBAR
-============================*/
-
 .custom-nav {
     padding: 12px 0px;
     width: 100%;
@@ -438,10 +411,6 @@ button:focus {
     height: 28px;
 }
 
-/*==========================
-        4.HOME
-============================*/
-
 .home-bg {
     background-image: url(../images/home-bg.jpg);
     background-position: center center;
@@ -515,9 +484,6 @@ button:focus {
     z-index: -1;
     transition: all .2s;
 }
-
-/*----DEMO 4/5/6----*/
-
 .creative:after {
     content: "";
     position: absolute;
@@ -531,20 +497,14 @@ button:focus {
     background-image: url(../images/bottom-color.png);
 }
 
-/*----DEMO 7/8/9-----*/
-
 .clip-home{
     clip-path: polygon(0 0, 100% 0, 100% 83%, 50% 100%, 0 83%);
 }
-
-/*----DEMO 10/11/12/13----*/
 
 .jarallax{
     background-size: cover;
     background-position: center center;
 }
-
-/*----DEMO 14----*/
 
 .home-bg-slider {
     position: relative;
@@ -565,10 +525,6 @@ button:focus {
     background-position: center center;
     background-size: cover;
 }
-
-/*==========================
-        5.ABOUT ME
-============================*/
 
 .about-detail {
     max-width: 850px;
@@ -606,9 +562,6 @@ button:focus {
     background: #000;
 }
 
-/*==========================
-        6.SERVICES
-============================*/
 
 .lan_box_ser {
     border: 1px dotted #e7e7e7;
@@ -618,9 +571,6 @@ button:focus {
     font-size: 42px;
 }
 
-/*==========================
-        7.FUNFACTS
-============================*/
 
 .lan_funfact {
     border: 1px dashed #b9b9b9;
@@ -644,10 +594,6 @@ button:focus {
   border-radius: 50%;
   object-fit: cover;
 }
-/*===========================
-        8.EDUCATION
-=============================*/
-
 .cv_edu_exp {
     padding: 10px 0;
     position: relative;
@@ -668,7 +614,7 @@ button:focus {
 
 .cv_edu_exp .cv_edu_exp_box {
     border-radius: 7px;
-    border: 1px solid white;
+    border: 2px solid white;
     margin-left: 50%;
     padding: 20px;
 }
@@ -698,10 +644,7 @@ button:focus {
     float: left;
     border-radius: 0;
 }
-.cv_edu_exp_box
-{
-    width: 75%;  
-}
+
 .cv_edu_exp h4,
 .cb_edu_exp_detail h4 {
     font-size: 18px;
@@ -716,372 +659,12 @@ button:focus {
     font-size: 15px;
     color: white;
 }
-
-/*==========================
-        9.CTA SECTIOn
-============================*/
-
 .bg-cta {
     position: relative;
     background-image: url(../images/img-2.jpg);
     background-size: cover;
     background-position: center center;
 }
-
-/*===========================
-        10.WORK
-=============================*/
-
-.work_menu li {
-    margin-right: 0px !important;
-}
-
-.work_menu li:after {
-    content: "*";
-    top: 3px;
-    position: relative;
-    display: inline-block;
-    color: #bbb;
-    margin: 0px 8px;
-}
-
-.work_menu li:last-child:after {
-    content: "";
-    display: none;
-}
-
-.work_menu li a {
-    letter-spacing: 0.03em;
-    padding: 6px 16px;
-    border-radius: 5px;
-    font-weight: 400;
-    display: inline-block;
-    cursor: pointer;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    transition: all 0.5s;
-    font-size: 14px;
-    color: #9a9a9a;
-}
-
-.work_menu li a.active {
-    background-color: #000;
-    color: #ffffff;
-}
-
-.work_menu li a:hover {
-    background-color: #000;
-    color: #ffffff !important;
-}
-
-.work_img_box {
-    border: none;
-    margin: 15px 0px;
-    overflow: hidden;
-    border-radius: 0;
-    position: relative;
-}
-
-.work_img_box {
-    position: relative;
-    overflow: hidden;
-}
-
-.work_img_box a {
-    position: absolute;
-    left: 0;
-    width: 50%;
-    z-index: 15;
-    height: 50%;
-    top: 0;
-}
-
-.work_img_box .work_images {
-    position: relative;
-}
-
-.work_img_box .work_images img {
-    transition: all 0.5s;
-    width: 100%;
-}
-
-.work_img_box .work_images .work_overlay {
-    top: 10px;
-    position: absolute;
-    overflow: hidden;
-    border-radius: 7px;
-    left: 10px;
-    bottom: 10px;
-    right: 10px;
-}
-
-.work_img_box .work_images .work_overlay a {
-    height: 100%;
-    width: 100%;
-}
-
-.work_img_box .work_images .work_overlay:after {
-    content: '';
-    left: 50%;
-    top: 50%;
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 30%;
-    width: 0;
-    position: absolute;
-    bottom: 50%;
-    opacity: 0;
-    height: 50%;
-    height: 0;
-    transition: all 150ms ease-in-out 200ms;
-}
-
-.work_img_box .work_images .work_overlay h4 {
-    overflow: hidden;
-    position: absolute;
-    font-size: 13px;
-    text-align: center;
-    top: 54px;
-    z-index: 2;
-    color: transparent;
-    transition: color 150ms ease-in-out 200ms;
-    right: 25px;
-    padding: 0 10px;
-}
-
-.work_img_box .work_images .work_overlay h6 {
-    color: transparent;
-    overflow: hidden;
-    position: absolute;
-    top: 30px;
-    right: 25px;
-    z-index: 2;
-    font-size: 18px;
-    transition: color 150ms ease-in-out 200ms;
-    text-align: center;
-    padding: 0 10px;
-}
-
-.work_img_box .work_images .work_overlay h4:before {
-    content: '';
-    background: #fff;
-    width: 100%;
-    position: absolute;
-    right: 100%;
-    top: 0;
-    bottom: 0;
-    transition: right 600ms ease-in-out 0s;
-}
-
-.work_img_box .work_images .work_overlay h6::before {
-    content: '';
-    background: #fff;
-    bottom: 0;
-    right: auto;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    width: 100%;
-    transition: left 600ms ease-in-out 0s;
-}
-
-.work_img_box:hover img {
-    transform: scale(1.1);
-}
-
-.work_img_box:hover .work_overlay:after {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    transition: all 150ms ease-in-out 200ms;
-    opacity: 1;
-}
-
-.work_img_box:hover .work_overlay h4 {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.work_img_box:hover .work_overlay h4:before {
-    right: -100%;
-}
-
-.work_img_box:hover .work_overlay h6 {
-    color: white;
-}
-
-.work_img_box:hover .work_overlay h6:before {
-    left: -100%;
-}
-
-/*==========================
-        11.CLIENT
-============================*/
-
-.bg-client {
-    position: relative;
-    background-image: url(../images/img-3.jpg);
-    background-size: cover;
-    background-position: center center;
-}
-
-.people_says .people_icon i {
-    font-size: 60px;
-}
-
-.people_review_box .people_review {
-    font-size: 18px;
-    max-width: 580px;
-}
-
-.owl-theme .owl-controls .owl-page {
-    margin: 20px 0px;
-}
-
-.owl-theme .owl-controls .owl-page span {
-    display: block;
-    width: 12px;
-    height: 6px;
-    margin: 5px 4px;
-    filter: Alpha(Opacity=50);
-    opacity: 0.5;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    transition: all 0.5s;
-    background: #fff;
-}
-
-.owl-theme .owl-controls .owl-page.active span {
-    width: 20px;
-}
-
-/*==========================
-        12.GREATE PEOPLE
-============================*/
-
-.logo_img img {
-    max-height: 100px;
-    width: auto !important;
-}
-
-/*==========================
-        13.SUBCRIBE SECTION
-============================*/
-
-.subcribe-newslatter input {
-    padding: 15px 20px;
-    width: 100%;
-    font-size: 17px;
-    color: #4c5667 !important;
-    border: none;
-    outline: none !important;
-    padding-right: 150px;
-    padding-left: 30px;
-    border-radius: 30px;
-    background-color: #f1f1f1;
-}
-
-.subcribe-newslatter button {
-    position: absolute;
-    top: 4px;
-    right: 5px;
-    outline: none !important;
-    border-radius: 30px;
-    font-size: 17px;
-    padding: 9px 30px;
-}
-
-.subcribe-newslatter form {
-    max-width: 550px;
-}
-
-/*==========================
-        14.BLOG
-============================*/
-
-.blog_video .blog_play {
-    position: absolute;
-    top: 52%;
-    left: 52%;
-    margin-left: -40px;
-    margin-top: -40px;
-}
-
-.blog_play {
-    outline: none !important;
-    width: 65px;
-    height: 65px;
-    padding-left: 2px;
-    border-radius: 50%;
-    z-index: 4;
-    display: inline-block;
-    cursor: pointer;
-    text-align: center;
-    color: #000 !important;
-    font-size: 35px;
-    line-height: 65px;
-    background-color: #fff;
-}
-
-/*==========================
-        15.CONTACT US
-============================*/
-
-.form-sub-title {
-    font-size: 15px;
-    line-height: 24px;
-    margin-bottom: 50px;
-}
-
-.contact_form .form-control {
-    box-shadow: none !important;
-    height: 44px;
-    border-radius: 0px;
-}
-
-.contact_form .form-control:focus {
-    border-color: #000;
-}
-
-.contact_form textarea.form-control {
-    height: auto;
-}
-
-.error {
-    margin: 8px 0px;
-    display: none;
-    color: red;
-}
-
-.error_msg {
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 18px;
-    color: red;
-    font-weight: 700;
-}
-
-.gig_loader {
-    display: none;
-}
-
-#success_msg {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#success_msg h3 {
-    color: #0dba26;
-    font-size: 22px;
-}
-
-/*==========================
-        16.FOOTER
-============================*/
-
 .fot_social .social-icon {
     border: 2px solid #868e96;
     border-radius: 50%;
@@ -1103,10 +686,6 @@ button:focus {
 .copy-rights {
     line-height: 43px;
 }
-
-/*==========================
-        17.BLOG PAGE
-============================*/
 
 .pagination>li {
     display: inline-block;
@@ -1147,8 +726,6 @@ button:focus {
     border-color: #000;
     z-index: 3;
 }
-
-/*---- SIDEBAR ----*/
 
 .blog_sidebar .sidebar_widget_title {
     font-size: 14px;
@@ -1255,8 +832,6 @@ button:focus {
     color: #000;
 }
 
-/*---BLOG SINGLE----*/
-
 .blockquote {
     border: 1px solid #e7e7e7;
     border-left: 4px solid #d6d6d6;
@@ -1320,10 +895,6 @@ button:focus {
 .comments-form .comment-form-input textarea.form-control {
     height: auto;
 }
-
-/*==========================
-        18.RESPONSIVE
-============================*/
 
 @media (max-width: 768px) {
     .custom-nav {
