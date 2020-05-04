@@ -1,15 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600|Nunito:400,600,700');
-/* -------------------------------------------------------------------
- * ## header social
- * ------------------------------------------------------------------- */
-.header__social {
-  list-style: none;
-  margin: 4rem 0 0 0;
-  padding: 0 0 4.4rem 0;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
 
 body {
     font-family: 'Baskerville', sans-serif;
@@ -896,6 +885,22 @@ button:focus {
     height: auto;
 }
 
+/* -------------------------------------------------------------------
+ * ## header social
+ * ------------------------------------------------------------------- */
+.header__social {
+  list-style: none;
+  margin: 4rem 0 0 0;
+  padding: 0 0 4.4rem 0;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+/*.cv_edu_exp_box
+{
+    width: 75%;  
+}*/
 @media (max-width: 768px) {
     .custom-nav {
         margin-top: 0px;
