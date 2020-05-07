@@ -1,26 +1,3 @@
-/* =================================================================== 
- *
- *  Typewrite Base Stylesheet
- *  Template Ver. 1.0.0
- *  05-17-2019
- *  ------------------------------------------------------------------
- *
- *  TOC:
- *  # imports
- *  # normalize 
- *  # basic/base setup styles 
- *  # Grid v2.0.1
- *  # block grids
- *  # MISC
- *
- * =================================================================== */
-
-
-
-/* ===================================================================
- * # imports 
- *
- * ------------------------------------------------------------------- */
 @import url("https://fonts.googleapis.com/css?family=Heebo:300,400,500,600,700|Lora:400,400i,700,700i|IBM+Plex+Sans:300,400,400i,600,700,900");
 
 
@@ -406,19 +383,6 @@ textarea {
   appearance: none;
 }
 
-
-/* ===================================================================
- * # Grid v2.0.1
- *
- *   -----------------------------------------------------------------
- * - Grid breakpoints are based on MAXIMUM WIDTH media queries, 
- *   meaning they apply to that one breakpoint and ALL THOSE BELOW IT.
- * - Grid columns without a specified width will automatically layout 
- *   as equal width columns.
- * ------------------------------------------------------------------- */
-
-/* rows
- * ------------------------------------- */
 .row {
   width: 89%;
   max-width: 1200px;
@@ -1284,5 +1248,3 @@ textarea {
 .pull-right {
   float: right;
 }
-
-/*# sourceMappingURL=base.css.map */
