@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162151229-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-162151229-2');
+</script>
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>The Life Of C</title>
+    <meta name="description" content="A Blog Post discussing in detail, the stages of compiling a C program.">
+    <meta name="author" content="Saarthak Agarwal">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/jpg" sizes="32x32" href="images/favicon.jpg">
+    <link rel="manifest" href="site.webmanifest">
+
+</head>
+
+<body class="ss-bg-white">
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <div id="top" class="s-wrap site-wrapper">
+
+        <!-- site header
+        ================================================== -->
+        <header class="s-header">
+
+            <div class="header__top">
+                <div class="header__logo">
+                    <h1 style="color: white;">Menu</h1>
+                </div>
+            </div> 
+            <a href="#0" class="header__menu-toggle"><span>Menu</span></a>
+            <!-- end header__top -->
+
+            <nav class="header__nav-wrap">
+
+                <ul class="header__nav">
+                    <li><a target="_blank" href="index.html" title="">Home</a></li>
+                    <li class="current">
+                        <a href="blog.html" title="">Blog</a>
+                    </li>
+                    <li><a href="contact.html" title="">Contact</a></li>
+                </ul> 
+                <span><a style="color: black;" href="https://www.styleshout.com/">Design by StyleShout</a></span>
+                <!-- end header__nav -->
+                
+
+            </nav>  <!-- end header__nav-wrap -->
+
+        </header> <!-- end s-header -->
+
+
+        <!-- site content
+        ================================================== -->
+        <div class="s-content content">
+            <main class="row content__page">
+                
+                <article class="column large-full entry format-standard">
+
+                    <div class="media-wrap entry__media">
+                        <div class="entry__post-thumb">
+                            <img src="images/header-norway.jpg" 
+                                  sizes="(max-width: 2000px) 100vw, 2000px" title="Paradise" alt="Norway">
+                        </div>
+                        <p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><sub><span style="font-family: Comic Sans MS, sans-serif;">Image Credits: <a href="https://global.flixbus.com/bus/norway">FlixBus</a></span></sub></p>
+                    </div>
+                    <div class="entry__content">
+                    	<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";text-align:center;'><strong><span style='font-size:48px;line-height:115%;font-family:"Georgia","serif";'>The Four Stages Of Life</span></strong></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";text-align:center;'><span style='font-size:20px;font-family:"Times New Roman","serif";color:#0E101A;'>July 09, 2020</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:15px;">&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">Okay, I have to admit it. The title was an unintentional and involuntary clickbait and this is not a blog about the four stages in the life of an individual, namely, <em>Brahmacharya</em>, <em>Grihastha</em>, <em>Vanaprastha</em>, and <em>Sannyasa</em>.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">That is not what I would write about, well, at least in this post.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:15px;">&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:15px;">&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><strong><span style="font-size:36px;font-family:Symbol;color:#0E101A;">The Four Stages in the Life of a C code.</span></strong></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:15px;">&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:15px;">&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">Compiling a program written in C language is a multi-stage process and proceeds through the stages of <em>Preprocessing, Compilation, Assembly,&nbsp;</em>and <em>Linking</em>.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<pre style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-family: Courier New, courier; font-size: 16px;">#include&lt;stdio.h&gt;
+//File name: Sample.c
+//This is a Macro
+#define programming_standard &quot;Hello World!\n&quot;
+int main()
+{
+    printf(programming_standard);
+    return 0;
+}</span></pre>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><sub><span style="font-family: Comic Sans MS, sans-serif;">A sample program in C language.</span></sub></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">Let&#39;s see what happens in each of these stages.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><strong><span style='font-size:27px;line-height:115%;font-family:"Times New Roman","serif";'>&nbsp;</span></strong></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 30px;"><strong><span style='line-height: 115%; font-family: "Georgia", "serif";'>The Preprocessing stage</span></strong></span><span style="font-size:15px;line-height:115%;">&nbsp;</span></p>
+<hr>
+<p><span style="font-size:24px;font-family:Symbol;color:#0E101A;">This is the first stage of compiling a C program.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">The preprocessor understands neither the syntax nor the semantics of the code. It does the following job:</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:15px;">&nbsp;</span></p>
+<ul style="list-style-type: disc;margin-left:41px;">
+    <li><span style="font-family:Symbol;font-size:18.0pt;color:#0E101A;">Removes comments from the code</span></li>
+    <li><span style="font-family:Symbol;font-size:18.0pt;color:#0E101A;">Substitutes the macro wherever required</span></li>
+    <li><span style="font-family:Symbol;font-size:18.0pt;color:#0E101A;">Expands the files included in the program</span></li>
+</ul>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:15px;">&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">The C code given above includes a few statements starting with the <code>#</code> character. These statements are called preprocessor directives and are exactly what their names suggest, directives, or commands to the pre-processor.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">The result obtained after the preprocessing stage can be printed on the command-line interface by compiling the program with the <code>E</code> option flag.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<pre class="highlight"><span style="font-family: Courier New, courier;"><span style="font-size: 16px;">gcc -E Sample.c</span></span></pre>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-family: Comic Sans MS, sans-serif; font-size: 24px;">Excersie</span><em><span style="font-family: Comic Sans MS, sans-serif;"><span style="font-size: 24px; color: rgb(14, 16, 26);">&nbsp;for the reader</span></span><span style="font-size: 24px; font-family: Comic Sans MS, sans-serif; color: rgb(14, 16, 26);">:</span><span style="font-size:24px;font-family:Symbol;color:#0E101A;">&nbsp;To understand what is meant by an eon, it is highly recommended that you compile a C++ program with the <code>E</code> option flag, while including the <code>&lt;bits/stdc++&gt;</code> library.</span></em></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">Alternatively, you can print the resultant preprocessed code into a file using the <code>o</code> flag. It outputs the preprocessed code in a file with a <code>.I</code> extension.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<pre style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 16px; font-family: Courier New, courier; color: rgb(14, 16, 26);">...</span><span style="font-size: 16px;">
+</span>
+<span style="font-size: 16px;"><span style="font-family: Courier New, courier; color: rgb(14, 16, 26);">__attribute__((__cdecl__)) __attribute__((__nothrow__)) wint_t fgetwchar (void);
+__attribute__((__cdecl__)) __attribute__((__nothrow__)) wint_t fputwchar (wint_t);
+__attribute__((__cdecl__)) __attribute__((__nothrow__)) int getw (FILE *);
+__attribute__((__cdecl__)) __attribute__((__nothrow__)) int putw (int, FILE *);
+
+# 2 &quot;Sample.c&quot; 2
+# 6 &quot;Sample.c&quot;
+int main()
+{
+ printf(&quot;Hello World!\n&quot;);
+ return 0;
+}</span></span><span style="font-size:24px;font-family:Symbol;color:#0E101A;">
+</span></pre>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><sub><span style="font-family: Comic Sans MS, sans-serif;">Output after preprocessing Sample.c</span></sub></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 30px;"><strong><span style='font-family: "Georgia", "serif";'>The Compilation Stage</span></strong></span></p>
+<hr>
+<p><span style="font-size:24px;font-family:Symbol;color:#0E101A;">Oddly enough, the second stage of compiling a C program was named as the Compilation stage.</span></p>
+<p><span style="font-size:24px;font-family:Symbol;color:#0E101A;">This stage converts the preprocessed code to assembly code.<sup><span style="font-size:24px;font-family:Symbol;color:#0E101A;"><small>&nbsp;*terms and conditions applied</small></span>&nbsp;</sup></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">It is in this stage where we are made aware of any syntax violations we may have committed in the program and&nbsp;if the program is free of syntax errors, that is, if the terms and conditions are satisfied, the preprocessed code is translated into assembly instructions specific to the CPU architecture we are working on.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;line-height:115%;font-family:Symbol;color:#0E101A;">&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">We can view the result of this stage by using the <code>S</code> flag. This creates a file with a <code>.S</code> extension comprising the generated assembly instructions.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<pre class="highlight"><span style="font-family: Courier New, courier;"><span style="font-size: 16px;">gcc -S Sample.c</span></span></pre>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;"><em>Okay great, but what is the deal with assembly code, and what is an assembler?</em></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">Assembly code is an intermediate human-readable language.&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;"><em>Why intermediate?</em>&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;font-family:Symbol;color:#0E101A;">Well, this is the lowest level code that is understood by us and is just one step away from being understood by the CPU, and that last step is what an assembler is responsible for. An assembler converts assembly code, the intermediate human-readable language, to binary instructions that are understood by the processor.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 30px;"><strong><span style='font-family: "Georgia", "serif";'>The Assembly Stage</span></strong></span></p>
+<hr>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;line-height:115%;font-family:Symbol;">The third stage uses an assembler to translate the assembly instructions to binary instruction also known as the object code.&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;line-height:115%;font-family:Symbol;">Therefore, the output of this stage consists of actual instructions to be run by the target processor.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;line-height:115%;font-family:Symbol;">Like other stages, we can view the result of this stage as well. We use the <code>c</code> option flag.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<pre class="highlight"><span style="font-family: Courier New, courier;"><span style="font-size: 16px;">gcc -c Sample.c</span></span></pre>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;line-height:115%;font-family:Symbol;">Running the above command will create a file named <code>Sample.o</code>, containing the object code of the program. The contents of this file are in a binary format and can be inspected using the <code>od</code> command:</span></p>
+<pre class="highlight"><code><span style="font-size: 16px; font-family: Courier New, courier;">od -c Sample.o</span></code></pre>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 30px;"><strong><span style='font-family: "Georgia", "serif";'>The Linking Stage</span></strong></span></p>
+<hr>
+<p><span style="font-size:24px;line-height:115%;font-family:Symbol;">Linking is the final stage of compiling a C program. While we obtained the object code in the assembly stage, which are machine instructions that the processor understands, some pieces of the program might still be missing.</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-size:24px;line-height:115%;font-family:Symbol;"><em>Example</em> : it is a good practice to have the implementation and interface of a program defined separately in the form of client and server files. The compiler does not look at more than one file during compilation. So, in our case, when the compiler does not find a definition for the functions called in the client file, it assumes them to be defined in other files. Once the program has been compiled, during execution, the processor needs to know what has to be done when a particular function is called.<br>Therefore, to produce the executable file, the existing pieces have to be rearranged and the missing ones need to be filled in.<br>This process is called <strong>linking</strong>, and as the name suggests, it refers to the creation of a single executable file from multiple object files.&nbsp;</span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-size:24px;line-height:115%;font-family:Symbol;">The <strong>linker</strong> arranges the pieces of object code together so that functions in some piece can successfully summon functions in another one.<br>While the compilation stage highlighted any syntactical violations, this is the stage where we might face complaints regarding multiple definitions of the same function and about functions that may not have been defined.</span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:24px;line-height:115%;font-family:Symbol;"><br>There are two kinds of linking:<br></span></p>
+<ul>
+    <li style='margin-top: 0cm; margin-right: 0cm; margin-bottom: 10pt; line-height: 115%; font-size: 15px; font-family: "Calibri", "sans-serif";'><span style="font-size:24px;line-height:115%;font-family:Symbol;">Static Linking: is the process of copying all library modules used in the program into the final executable image. The linker combines library routines with our code to resolve external references, and to generate an executable image suitable for loading into memory.<br></span></li>
+    <li style='margin-top: 0cm; margin-right: 0cm; margin-bottom: 10pt; line-height: 115%; font-size: 15px; font-family: "Calibri", "sans-serif";'><span style="font-size:24px;line-height:115%;font-family:Symbol;">Dynamic Linking: is the kind of linking where the names of the external library files are placed in the final executable. This way, much of the linking process is deferred and the actual linking takes place at run time, when both, the executable files and libraries are loaded onto the memory.</span></li>
+</ul>
+<p><span style="font-size:24px;line-height:115%;font-family:Symbol;"><br></span></p>
+<p><span style="font-size:24px;line-height:115%;font-family:Symbol;">Therefore, the result of this stage is the final executable file.&nbsp;</span></p>
+<p><span style="font-size:24px;line-height:115%;font-family:Symbol;">When run without options, <abbr title="GNU Compiler Collection">GCC</abbr> will name this file as <code>a.out</code> on a LINUX machine and <code>a.exe</code> on a Windows machine.&nbsp;</span></p>
+<p><span style="font-size:24px;line-height:115%;font-family:Symbol;">To rename the executable file, we pass the desired name with the <code>o</code> option flag.</span></p>
+<p><br></p>
+<pre><span style="font-family: Courier New, courier; font-size: 16px;">gcc  Sample.c -o Sample</span></pre>
+<p><br></p>
+<p><span style="font-size:24px;line-height:115%;font-family:Symbol;"><strong>Opinion</strong>: Compiling is not the same as creating an executable!<br>When talking about programs, colloquial usage of the phrase &ldquo;<em>it compiles fine</em>&rdquo; to convey that a program works, might be confusing.<br>Since the creation of an executable is a multi-stage process, comprising <strong>compilation</strong> and <strong>linking</strong>, even if a program &quot;<em>compiles fine</em>&quot; it might not work owing to errors during the linking phase.<br>Though this may not be a frequent problem, it is better to call the complete process of going from the source code to an executable as a <strong>build</strong>.<br></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+                    </div> <!-- end entry content -->
+                </article> <!-- end column large-full entry-->
+            </main>
+
+        </div> <!-- end s-content -->
+
+
+        <!-- footer
+        ================================================== -->
+        <footer class="s-footer footer">
+            <div class="row">
+                <div class="column large-full footer__content">
+                    <div class="footer__copyright">
+                        <span>Designed and Posted by <a href="index.html">Saarthak Agarwal</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="go-top">
+                <a class="smoothscroll" title="Back to Top" href="#top"></a>
+            </div>
+        </footer>
+
+    </div> <!-- end s-wrap -->
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
