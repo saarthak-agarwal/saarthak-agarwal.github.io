@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162151229-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-162151229-2');
+</script>
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Primality Testing</title>
+    <meta name="description" content="A Blog Post discussing in detail, the stages of compiling a C program.">
+    <meta name="author" content="Saarthak Agarwal">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/jpg" sizes="32x32" href="images/favicon.jpg">
+    <link rel="manifest" href="site.webmanifest">
+
+</head>
+
+<body class="ss-bg-white">
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <div id="top" class="s-wrap site-wrapper">
+
+        <!-- site header
+        ================================================== -->
+        <header class="s-header">
+
+            <div class="header__top">
+                <div class="header__logo">
+                    <h1 style="color: white;">Menu</h1>
+                </div>
+            </div> 
+            <a href="#0" class="header__menu-toggle"><span>Menu</span></a>
+            <!-- end header__top -->
+
+            <nav class="header__nav-wrap">
+
+                <ul class="header__nav">
+                    <li><a target="_blank" href="index.html" title="">Home</a></li>
+                    <li class="current">
+                        <a href="blog.html" title="">Blog</a>
+                    </li>
+                    <li><a href="contact.html" title="">Contact</a></li>
+                </ul> 
+                <span><a style="color: black;" href="https://www.styleshout.com/">Design by StyleShout</a></span>
+                <!-- end header__nav -->
+                
+
+            </nav>  <!-- end header__nav-wrap -->
+
+        </header> <!-- end s-header -->
+
+
+        <!-- site content
+        ================================================== -->
+        <div class="s-content content">
+            <main class="row content__page">
+                
+                <article class="column large-full entry format-standard">
+
+                    <div class="media-wrap entry__media">
+                        <div class="entry__post-thumb">
+                            <img src="images/out2.webp" 
+                                  sizes="(max-width: 2000px) 100vw, 2000px" alt="Plot of Primes">
+                        </div>
+                        <p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><sub><span style="font-family: Comic Sans MS, sans-serif;">Image Credits: <a href="https://github.com/houdini22/banit.pl/tree/master/prime_numbers/part_5">Wikipedia</a></span></sub></p>
+                    </div>
+                    <div class="entry__content">
+                    <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";text-align:center;'><strong><span style='font-size:48px;line-height:115%;font-family:"Georgia","serif";'><strong>The Art Of O(1) Primality Testing</strong></span></strong></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";text-align:center;'><span style='font-size:20px;font-family:"Times New Roman","serif";color:#0E101A;'>August 01, 2020</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size:15px;">&nbsp;</span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">What we are going to discuss is not a new algorithm, but a great C++ trick.</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">Check out the following program:</span></span></span></p>
+<pre style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 16px; line-height: 115%; color: rgb(14, 16, 26); font-family: Courier New, courier;">class Sieve</span><span style="font-family: Courier New, courier;">
+<span style="font-size:16px;line-height:115%;color:#0E101A;">{</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">    public:</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">            bool isPrime[MAX+1] = {};</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">            constexpr Sieve()</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">            {</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                isPrime[2] = true;</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;"> </span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                for(int i = 3; i &lt;= MAX; i += 2)</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                    isPrime[i] = true;</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;"> </span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                for(int i = 3; i*i &lt;= MAX; i++)</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                {</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                    if(isPrime[i])</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                    {</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                        for(int j = i*i; j &lt;= MAX; j += i)</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                            isPrime[j] = false;</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                    }</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">                }</span>
+<span style="font-size:16px;line-height:115%;color:#0E101A;">            }</span>
+</span><span style="font-size: 16px; line-height: 115%; color: rgb(14, 16, 26); font-family: Courier New, courier;">};</span></pre>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">What we see above is an implementation of the traditional Sieve of Eratosthenes with a slight modification for optimization.</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 30px;"><strong><span style="font-family: Georgia, serif;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><strong>The&nbsp;</strong></span><span style="line-height: 115%; color: rgb(14, 16, 26); font-family: Courier New, courier;"><strong>constexpr</strong></span><span style="line-height: 115%; color: rgb(14, 16, 26);"><strong>&nbsp;keyword</strong></span></span></strong></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><code>constexpr</code> is a C++ 11 feature that instructs the compiler to evaluate objects or functions declared as <code>constexpr</code> at the time of compilation, enabling the evaluated expression to be used by other constant objects or functions!</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">In simple words, this implies instructing the compiler to perform the computations related to the given function or object during the&nbsp;</span></span></span><a href="https://saarthak-agarwal.github.io/FirstPost.html" rel="noopener noreferrer" target="_blank"><span style="font-size: 24px;"><span style="font-family: Symbol; color: rgb(97, 189, 109);"><span style="line-height: 115%;">compilation stage</span></span></span></a><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">, rather than at runtime!</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 28px;"><em><span style="font-family: Georgia, serif;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><em>How exactly is compile-time evaluation advantageous over runtime evaluation? After all, the evaluation is going to take the same time whether done at compile time or runtime&hellip;</em></span></span></em></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">Good question.</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">What we need to observe is that once the code is finalized, it is compiled once and the resultant binary file/executable is executed multiple times.&nbsp;</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">Ergo, if there is a computation that requires to be done every time we execute the file, wouldn&rsquo;t it be better if we could do it once and store the results so that we don&rsquo;t have to compute it every time the file is run?</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">That&rsquo;s exactly what we achieve with the help of the <code>constexpr</code> keyword. The idea is to spend time during the&nbsp;</span></span></span><a href="https://saarthak-agarwal.github.io/FirstPost.html" rel="noopener noreferrer" target="_blank"><span style="font-size: 24px;"><span style="font-family: Symbol; color: rgb(97, 189, 109);"><span style="line-height: 115%;">compilation&nbsp;</span></span><span style="color: rgb(97, 189, 109);"><span style="font-family: Symbol;"><span style="line-height: 115%;">stage</span></span></span></span></a><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">&nbsp;and cut down on the time spent during the execution phase.</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><em><span style="font-family: Georgia, serif;"><span style="font-size: 28px;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><em>But hey, memory is allocated at runtime. Where are all those computed primes stored?</em></span></span></span></em></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">Again, good question.</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">The code snippet shown above, computes the sieve for numbers up to <code>MAX</code> during&nbsp;</span></span></span><a href="https://saarthak-agarwal.github.io/FirstPost.html" rel="noopener noreferrer" target="_blank"><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">compilation&nbsp;</span></span></span></a><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">and stores in a table&nbsp;</span><span style="line-height: 115%; color: rgb(14, 16, 26); font-family: Courier New, courier;">1s</span><span style="line-height: 115%; color: rgb(14, 16, 26);">&nbsp;and&nbsp;</span><span style="line-height: 115%; color: rgb(14, 16, 26); font-family: Courier New, courier;">0s,</span><span style="line-height: 115%; color: rgb(14, 16, 26);">&nbsp;depending on the primality of the numbers, right in the binary file.</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">To know how that looks like, refer to this: <a href="https://godbolt.org/z/oa69r5">https://godbolt.org/z/h7r3K7</a><br></span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">But with freedom, comes its limitations. To name a few:</span></span></span></p>
+<ul>
+    <li style='margin-top: 0cm; margin-right: 0cm; margin-bottom: 10pt; line-height: 115%; font-size: 15px; font-family: "Calibri", "sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">Functions declared as <code>constexpr</code> cannot be of <code>void</code> return type.</span></span></span></li>
+    <li style='margin-top: 0cm; margin-right: 0cm; margin-bottom: 10pt; line-height: 115%; font-size: 15px; font-family: "Calibri", "sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">Certain operators, like the prefix increment operator, cannot be used inside <code>constexpr</code> functions.</span></span></span></li>
+    <li style='margin-top: 0cm; margin-right: 0cm; margin-bottom: 10pt; line-height: 115%; font-size: 15px; font-family: "Calibri", "sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">Most importantly, there is a cap on the number of iterations that a loop, declared inside of a <code>contexpr</code> function, can support. The limit has been set in the neighborhood of&nbsp;</span><span style="line-height: 115%; color: rgb(14, 16, 26); font-family: Courier New, courier;">2.6x10<sup>4</sup></span><span style="line-height: 115%; color: rgb(14, 16, 26);">&nbsp;iterations.</span></span></span></li>
+</ul>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">The last restriction restricts us to compute sieves which involve no more than the allowed number of iterations. We can, however, work around this restriction by using the <code>-fconstexpr-loop-limit</code> parameter during the&nbsp;</span></span></span><a href="https://saarthak-agarwal.github.io/FirstPost.html" rel="noopener noreferrer" target="_blank"><span style="font-size: 24px;"><span style="font-family: Symbol; color: rgb(97, 189, 109);"><span style="line-height: 115%;">compilation stage</span></span></span></a><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">!</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><strong><span style="font-size: 30px;"><span style="font-family: Georgia, serif;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><strong>Putting it all together</strong></span></span></span></strong></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">The following piece of code compares the difference between compile-time and runtime evaluation of the sieve:</span></span></span></p>
+<pre style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-family: Courier New, courier;">#include &lt;bits/stdc++.h&gt;
+#define MAX 200000
+using namespace std;
+
+class Sieve
+{
+    public:
+            bool isPrime[MAX+1] = {};
+            constexpr Sieve()
+            {
+                isPrime[2] = true;
+
+                for(int i = 3; i &lt;= MAX; i += 2)
+                    isPrime[i] = true;
+
+                for(int i = 3; i*i &lt;= MAX; i++)
+                {
+                    if(isPrime[i])
+                    {
+                        for(int j = i*i; j &lt;= MAX; j += i)
+                            isPrime[j] = false;
+                    }
+                }
+            }
+};
+
+bool slowerSieve(int n) 
+{
+    return (Sieve{}).isPrime[n];
+}
+
+bool fasterSieve(int n) 
+{
+    static constexpr Sieve s;
+    return s.isPrime[n];
+}
+
+int main() 
+{
+    srand(time(NULL));
+
+    int size = 1000;
+    vector&lt;int&gt; numbers(size);
+    for(int i = 0; i &lt; size; i++)
+        numbers[i] = rand() % MAX;
+
+    
+    int ans = 0;
+    auto start_time = chrono::high_resolution_clock::now();
+
+    for(auto i : numbers)
+        ans += slowerSieve(i);
+
+    auto end_time = chrono::high_resolution_clock::now();
+    cout &lt;&lt; &quot;\t\tRuntime Evaluation: \nNumber of Prime numbers: &quot; &lt;&lt; ans &lt;&lt; &quot;\nTime elapsed (ms): &quot; &lt;&lt; chrono::duration_cast&lt;chrono::milliseconds&gt;(end_time - start_time).count() &lt;&lt;&quot;\n\n&quot;;
+
+    
+    ans = 0;
+    start_time = chrono::high_resolution_clock::now();
+    
+    for(auto i : numbers)
+        ans += fasterSieve(i);
+    
+    end_time = chrono::high_resolution_clock::now();
+    cout &lt;&lt; &quot;\t\tCompiletime Evaluation: \nNumber of Prime numbers: &quot;&lt;&lt; ans &lt;&lt; &quot;\nTime elapsed (ms): &quot; &lt;&lt; chrono::duration_cast&lt;chrono::milliseconds&gt;(end_time - start_time).count() &lt;&lt;&quot;\n&quot;;
+
+    return 0;
+}</span></pre>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">Please note: calling <code>slowerSieve</code> for each integer in the vector causes a fresh calculation of the sieve each time.</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);">Of course, recomputing the sieve a thousand times doesn&#39;t make sense, but this has been done intentionally, for the sole purpose of showing that the algorithm is not computing the sieve each time a call is made to the <code>fasterSieve</code> function.</span></span></span></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><em><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><em>Output:</em></span></span></span></em></p>
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><br></p>
+<pre style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:"Calibri","sans-serif";'><em><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26); font-size: 20px;"><em>Runtime Evaluation:</em></span></span></span></em><span style="font-size: 20px;">
+<em><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><em>              Number of Prime numbers: 109</em></span></span></em>
+<em><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><em>              Time elapsed (ms): 1315</em></span></span></em>
+
+<em><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><em>Compile-time Evaluation:</em></span></span></em>
+<em><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26);"><em>              Number of Prime numbers: 109</em></span></span></em>
+</span><em><span style="font-size: 24px;"><span style="font-family: Symbol;"><span style="line-height: 115%; color: rgb(14, 16, 26); font-size: 20px;"><em>             Time elapsed (ms): 0</em></span></span></span></em></pre>
+<p><br></p>
+<p><span style="font-family: Georgia, serif; font-size: 30px;"><strong>Conclusion</strong></span></p>
+<p><span style="font-family: Symbol; font-size: 24px;">To conclude, yes it does check for primality in O(1) time complexity, but it comes at a cost. It not only increases the time needed to compile the program, but also causes a significant increase in the size of the built executable. Even though this trick finds little practical use, it&#39;s fascinating to know about it.&nbsp;</span></p>
+<p><br></p>
+<p><span style="font-family: Symbol; font-size: 24px;">Thank you for stopping by!&nbsp;</span></p>
+<p><span style="font-family: Symbol; font-size: 24px;">If you find anything to be incorrect or have any suggestions, I would love to hear from you. Please send me an email at&nbsp;</span><a href="mailto:sarthak1607@gmail.com"><span style="font-family: Symbol; font-size: 24px;">sarthak1607@gmail.com</span></a><span style="font-family: Symbol; font-size: 24px;">&nbsp;.</span></p>	
+                    </div> <!-- end entry content -->
+                </article> <!-- end column large-full entry-->
+            </main>
+
+        </div> <!-- end s-content -->
+
+
+        <!-- footer
+        ================================================== -->
+        <footer class="s-footer footer">
+            <div class="row">
+                <div class="column large-full footer__content">
+                    <div class="footer__copyright">
+                        <span>Designed and Posted by <a href="index.html">Saarthak Agarwal</a></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="go-top">
+                <a class="smoothscroll" title="Back to Top" href="#top"></a>
+            </div>
+        </footer>
+
+    </div> <!-- end s-wrap -->
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
